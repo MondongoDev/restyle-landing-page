@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 *{
     padding: 0;
     margin: 0;
@@ -8,9 +14,7 @@ html {
     font-size: 62.5%;
     line-height: 1.4;
     margin: 0;
-    height: 100%;
     box-sizing: border-box;
-    position: relative;
     overflow-x: hidden;
 }
 
@@ -22,7 +26,8 @@ body {
     background-color: #FFFFFF;
     margin: 0;
     padding: 0;
-    display: overflow;
+    display: block;
+    overflow-x: hidden;
 }
 
 /*Header section*/
@@ -37,6 +42,8 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .header .logo{
@@ -130,7 +137,10 @@ body {
 }
 
 .header .nav-links{
-    list-style: none;    
+    list-style: none;  
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;  
 }
 
 .header .nav-links li{
@@ -188,6 +198,23 @@ body {
     background-color: #FFFFFF;
 }
 
+@media (min-width: 1024px) {
+    .header{
+        height: 70px;
+    }
+    .header .nav-links {
+        justify-content: flex-end; /* Alinea el menú a la derecha */
+    }
+
+    .header .nav-links li {
+        padding: 0 30px; /* Aumenta el espaciado entre enlaces */
+    }
+
+    .header .logo img {
+        height: 50px; /* Ajusta la altura de la imagen si es necesario */
+    }
+}
+
 
 /*hero section*/
 #hero_section {
@@ -195,6 +222,8 @@ body {
     justify-content: center;
     text-align: center;
     align-items: center;
+    flex-direction: column;
+    background-attachment: fixed;
 }
 
 #hero_section .hero_img .hero-gradient {
@@ -213,17 +242,15 @@ body {
     width: 100%; 
     height: 100%; 
     position: absolute;
-    display: block;
     object-fit: cover;
     z-index: -1;
     top: 0; 
     left: 0; 
-    border-radius: 0 0 0 0rem;
 }
 
 #hero_section .hero_text {
     position: relative;
-    padding: 14rem;
+    padding: 2rem;
     z-index: 2; 
 }
 
@@ -256,12 +283,25 @@ body {
     cursor: pointer;
 }
 
+@media (min-width: 768px) {
+
+    #hero_section .hero_text h1 {
+        padding-top: 15rem;
+    }
+
+    #hero_section .hero_text {
+        padding: 8rem;
+    }
+}
+
 /*end of hero section*/
 
 /*benefits section*/
 
 #benefits_section {
+    margin-top: 30rem;
     text-align: center;
+    padding: 2rem;
 }
 
 #benefits_section .benefits_box{
@@ -269,14 +309,16 @@ body {
     text-align: center;
     align-items: center;
     padding-bottom: 10rem;
-    margin: 0 15rem;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1200px;
 }
 
 #benefits_section h1{
-    margin-top: 25rem;
-    font-size: 9rem;
+    margin-bottom: 5rem;
+    font-size: 6rem;
     font-weight: bolder;
     color: black;
 }
@@ -309,75 +351,92 @@ body {
     font-weight: bold;
 }
 
+@media (max-width: 768px) {
+
+    #benefits_section {
+        margin-top: 0;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    #benefits_section .benefits_box h2{
+        padding: 1rem;
+    }
+}
+
 /*end of benefits section*/
 
-/*start of membership section*/
-
+/* Membership Section */
 #section-membership {
     text-align: center;
-    border-radius: 10px;
+    padding: 5rem 2rem;
+    background-color: #F9F9F9;
 }
 
 #section-membership h2 {
     font-weight: bolder;
-    font-size: 350%;
-
+    font-size: 6rem;
+    margin-bottom: 3rem;
 }
 
 #section-membership h3 {
+    font-size: 3rem;
     margin-top: 20px;
+    margin-bottom: 3rem;
 }
 
 #section-membership .sub-section {
-    background-color: #F5F5F5;
-    margin: 40px;
+    background-color: #FFFFFF;
+    padding-top: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-#section-membership .sub-section h3 {
-    text-align: center;
-    font-size: 100%;
-    margin-top: 20px;
-}
-#section-membership .section-title{
-    text-align: center;
-    font-size:200%;
-    margin-bottom: 20px;;
+#section-membership .section-title {
+    font-size: 4rem;
+    margin-bottom: 1rem;
     color: #5C5C5C;
 }
-#section-membership .tarifas{
+
+#section-membership .tarifas {
     display: flex;
-    justify-content: space-around;
-    gap: 20px;
-    padding: 40px;
-    border-radius: 20px;
-    margin: 2%;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
 }
 
-#section-membership .tarifa {
+#section-membership .tarifa.card {
     background-color: #DEDEFF;
-    padding: 50px;
-    width: 25%;
+    padding: 2.5rem;
+    width: 300px;
+    max-width: 350px;
     display: flex;
     flex-direction: column;
-    border-radius: 20px;
-    flex: 1 1 30%;
+    border-radius: 15px;
+    margin: 1rem;
+    transition: transform 0.3s;
+}
+
+#section-membership .tarifa.card:hover {
+    transform: translateY(-5px);
 }
 
 #section-membership .tarifa h3 {
-    margin-bottom: 10px;
     color: #003F8F;
     font-weight: bolder;
-    font-size: 200%;
-    margin-bottom: 20px;;
+    font-size: 3rem;
+    margin-bottom: 15px;
 }
 
 #section-membership .tarifa p {
     margin-bottom: 15px;
+    font-size: 1rem;
 }
 
 #section-membership .tarifa ul {
     margin-bottom: 15px;
     text-align: left;
+    font-size: 1rem;
     color: #5C5C5C;
 }
 
@@ -391,91 +450,170 @@ body {
     color: #fff;
     border: none;
     cursor: pointer;
-    width: 80%;
+    width: 100%;
     border-radius: 20px;
     font-weight: bold;
-    font-family: 'Monserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #section-membership .btn:hover {
     background-color: #003f8f;
 }
 
+/* Responsiveness for smaller screens */
+@media (max-width: 768px) {
+    #section-membership h2 {
+        font-size: 2rem;
+    }
 
-/*SECTION ABOUT THE APP*/
+    #section-membership h3 {
+        font-size: 1.2rem;
+    }
 
-/*about the app*/
+    #section-membership .tarifa.card {
+        width: 100%; /* Las tarjetas ocupan todo el ancho en pantallas pequeñas */
+        max-width: 100%;
+        margin: 1rem 0; /* Espaciado vertical entre tarjetas */
+    }
+}
 
+@media (min-width: 769px) {
+
+    #section-membership .sub-section {
+        margin: 0 30rem;
+        padding-bottom: 5rem;
+    }
+
+    #section-membership h3 {
+        font-size: 2rem;
+    }
+
+    #section-membership .tarifa.card {
+        width: 300px;
+        max-width: 350px;
+    }
+}
+
+/*end of membership section*/
+
+/* About the App Section */
 #about-the-app-container {
     display: flex;
-    /*flex-wrap: wrap;*/
+    flex-wrap: wrap; /* Permitir que los elementos se envuelvan */
     margin: 3%;
     width: 100%;
     align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    justify-content: space-between; /* Asegura el espaciado adecuado */
 }
 
 #about-the-app-container .information {
     width: 45%;
-    display: inline-block;
     padding: 20px;
 }
 
+#about-the-app .information h1{
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
 #about-the-app h1 {
-    font-size: 5rem;
-    margin-bottom: 20px;
+    font-size: 6rem;
+    margin-top: 2rem;
     text-align: center;
 }
 
 #about-the-app-container .information p {
     margin-bottom: 15px;
+    font-size: 1rem;
 }
 
 #about-the-app-container .links {
     width: 45%;
-    display: inline-block;
     padding: 25px;
     background-color: #f5f5f5;
     border-radius: 2rem;
-    height: fit-content;
 }
 
 #about-the-app-container .video {
     margin-bottom: 13px;
 }
 
-#about-the-app-container iframe{
+#about-the-app-container iframe {
     border-radius: 2rem;
+    width: 100%; /* Asegura que el iframe ocupe el 100% de su contenedor */
 }
 
 #about-the-app-container .mobile-apps {
     display: flex;
     justify-content: center;
+    gap: 20px; /* Espaciado entre los iconos */
+    margin-top: 20px;
 }
 
 #about-the-app-container .mobile-apps img {
-    width: 150px;
+    width: 150px; /* Ajustamos el tamaño de los íconos para móviles */
 }
 
-#about-the-app-container .icons{
+#about-the-app-container .icons {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
-#about-the-app-container .icons img{
+#about-the-app-container .icons img {
     margin: 25px 70px;
     width: 180px;
 }
-#about-the-app .title{
+
+#about-the-app .title {
     padding: 20px;
 }
-#about-the-app-container .product-name{
+
+#about-the-app-container .product-name {
     color: #3F51B5;
 }
 
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 768px) {
 
+    #about-the-app h1 {
+        font-size: 5rem;
+    }
 
+    #about-the-app-container {
+        flex-direction: column; /* Hacemos que los elementos se apilen verticalmente */
+    }
 
+    #about-the-app-container .information,
+    #about-the-app-container .links {
+        width: 100%; /* Ocupa todo el ancho disponible en pantallas pequeñas */
+        margin-bottom: 1rem; /* Agregamos margen entre las secciones */
+    }
+
+    #about-the-app-container .mobile-apps img {
+        width: 75px; /* Reducimos el tamaño de los íconos en móviles */
+    }
+
+    #about-the-app-container iframe {
+        height: 200px; /* Ajustamos la altura del iframe */
+    }
+
+    #about-the-app-container .links {
+        padding: 15px;
+    }
+}
+
+@media (min-width: 769px){
+    #about-the-app-container .links {
+        margin-right: 10rem;
+    }
+}
+
+/*end of about the app*/
+
+/*SECTION testimonials*/
 
 /*SECTION testimonials*/
 
@@ -487,7 +625,7 @@ body {
 }
 
 #testimonials-section h1 {
-    font-size: 5rem;
+    font-size: 6rem;
     padding: 20px;
 }
 
@@ -497,11 +635,12 @@ body {
     justify-content: space-between;
     background-color: #F5f5f5;
     border-radius: 2rem;
+
 }
 
 #testimonials-section .left-column,
-.right-column {
-    width: 45%;
+#testimonials-section .right-column {
+    width: 48%; /* Reducido a 48% para más espacio entre columnas */
 }
 
 #testimonials-section .testimonial {
@@ -511,12 +650,13 @@ body {
     padding: 20px;
     margin: 2rem;
     flex: 1 1 auto;
-    height: 100px;
+    height: auto; /* Eliminar la altura fija */
+    justify-content: flex-start; /* Asegura que el contenido esté alineado */
 }
 
 #testimonials-section .profile-img {
-    float: left;
     margin-right: 20px;
+    border-radius: 50%;
 }
 
 #testimonials-section .information {
@@ -525,8 +665,8 @@ body {
 }
 
 #testimonials-section .testimonial img {
-    width: 75%;
-    height: 80%;
+    width: 100px;
+    height: auto;
     border-radius: 100%;
 }
 
@@ -540,10 +680,64 @@ body {
     font-style: italic;
 }
 
+/* Ajuste en pantallas pequeñas */
+@media (max-width: 768px) {
+    #testimonials-section h1 {
+        font-size: 5rem;
+    }
+    
+    #testimonials-section .testimonial-columns {
+        flex-direction: column; /* Cambiar a columna en pantallas pequeñas */
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        border-radius: 0;
+    }
+
+    #testimonials-section .left-column,
+    #testimonials-section .right-column {
+        width: 100%; /* Columnas ocupan el 100% en pantallas pequeñas */
+        margin: 0;
+    }
+
+    #testimonials-section .testimonial {
+        flex-direction: column; /* Apilar los elementos de la tarjeta */
+        align-items: center;
+        margin: 1rem;
+        height: auto; /* Asegurar que las tarjetas se ajusten */
+    }
+
+    #testimonials-section .profile-img {
+        margin: 0 auto 1rem;
+    }
+
+    #testimonials-section .information {
+        text-align: center;
+    }
+
+    #testimonials-section .testimonial img {
+        height: auto;
+        border-radius: 100%;
+    }
+}
+
+/* Pantallas grandes (más de 1200px) */
+@media (min-width: 1200px) {
+    #testimonials-section .testimonial-columns {
+        gap: 30px; /* Mayor separación entre las columnas */
+    }
+    #testimonials-section .left-column,
+    #testimonials-section .right-column {
+        width: 48%; /* Mantener 48% de ancho */
+    }
+
+    #testimonials-section .testimonial {
+        height: auto; /* Asegura que las tarjetas no tengan altura fija */
+    }
+}
 
 
-
-/*Styles Section Contact-Us*/
+/*end tesmtimonials */
 
 
 /*SECTION CONTACT-US*/
@@ -552,24 +746,23 @@ body {
     padding: 3%;
 }
 
-/*Estilos del title-contact-us*/
-
 #contact-us .title-contact-us {
     text-align: center;
     margin-top: 20px;
     margin-bottom: 60px;
-    font-size: 40px;
 }
 
-/*Estilos generales de container-form */
+#contact-us .title-contact-us h1{
+    font-size: 5rem;
+}
 
 #contact-us .container-form {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten en pantallas pequeñas */
+    gap: 20px; /* Espacio entre las secciones */
 }
-
-/*Estilos de content-form */
 
 #contact-us .content-form {
     background-color: #DEDEFF;
@@ -580,16 +773,11 @@ body {
     margin: auto;
 }
 
-/*Estilos de form */
-
 #contact-us form {
     display: flex;
     flex-direction: column;
     padding: 20px;
 }
-
-
-/*Estilo titulo del form*/
 
 #contact-us .content-form h1 {
     font-size: 30px;
@@ -597,16 +785,12 @@ body {
     text-align: center;
 }
 
-/*Estilos de input*/
-
-#contact-us form input, label {
+#contact-us form input,
+#contact-us form label {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
 }
-
-
-/*Estilos de textarea*/
 
 #contact-us form textarea {
     padding: 10px;
@@ -615,8 +799,6 @@ body {
     border: 1px solid #363636;
 }
 
-/*Estilos de button*/
-
 #contact-us form button {
     padding: 10px;
     background-color: #2196f3;
@@ -624,18 +806,14 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 120px ;
+    width: 120px;
     margin: auto;
 }
-
-/*Estilos de information-form */
 
 #contact-us .information-form {
     text-align: center;
     margin: auto;
 }
-
-/*Estilos de information-form p*/
 
 #contact-us .information-form p {
     font-size: 20px;
@@ -644,15 +822,71 @@ body {
     padding: 20px;
 }
 
-/*Estilos de information-form img*/
-
 #contact-us .information-form img {
     max-width: 500px;
     height: auto;
 }
 
+@media (max-width: 768px) {
+    #contact-us .container-form {
+        padding: 0 2rem;
+        flex-direction: column; /* Hace que los elementos se apilen verticalmente */
+        width: 100%; /* Asegura que los elementos ocupen el 100% del ancho */
+    }
 
-/*Styles about-the-team section*/
+    /* Ajustar el formulario */
+    #contact-us .content-form {
+        width: 100%; /* El formulario ocupa todo el ancho disponible */
+        margin-bottom: 20px; /* Agregar espacio entre el formulario y la información */
+    }
+
+    /* Ajustar los campos del formulario */
+    #contact-us form input,
+    #contact-us form textarea {
+        width: 100%; /* Asegura que los campos ocupen todo el ancho */
+    }
+
+    /* Ajustar el tamaño del título */
+    #contact-us .title-contact-us {
+        font-size: 30px; /* Reducir tamaño del título en pantallas pequeñas */
+    }
+
+    /* Ajustar el tamaño de la imagen */
+    #contact-us .information-form img {
+        max-width: 100%; /* La imagen ocupará el 100% del contenedor */
+        height: auto;
+    }
+
+    /* Ajustar tamaño del texto */
+    #contact-us .information-form p {
+        font-size: 18px; /* Reducir el tamaño del texto */
+    }
+
+    /* Ajustar botón */
+    #contact-us form button {
+        width: 100%; /* Hacer el botón de tamaño completo */
+    }
+}
+
+/* Responsividad para pantallas muy pequeñas (menor a 480px) */
+@media (max-width: 480px) {
+    #contact-us .title-contact-us {
+        font-size: 24px; /* Más pequeño en pantallas muy pequeñas */
+    }
+
+    #contact-us .information-form p {
+        font-size: 16px; /* Aún más pequeño para pantallas pequeñas */
+    }
+
+    #contact-us form button {
+        width: 100%; /* Asegurarse que el botón ocupe el 100% */
+    }
+}
+
+
+/*end of contact us*/
+
+/*start about-the-team section*/
 
 #about-the-team{
     padding: 3%;
@@ -686,26 +920,26 @@ body {
 
 /*FOOTER*/
 
-.footer{
+.footer {
     width: 100%;
     background-color: #3F51B5;
     height: 130px;
-    bottom: 0;    
+    bottom: 0;
 }
 
-.footer .Group-1{
+.footer .Group-1 {
     width: 100%;
     margin: auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap:50px;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    grid-gap: 50px;
     padding: 0px 0px;
     justify-content: center;
     align-items: center;
     justify-items: center;
 }
 
-.footer .Group-1 .box figure{
+.footer .Group-1 .box figure {
     width: 100%;
     height: 100%;
     display: flex;
@@ -713,25 +947,24 @@ body {
     align-items: center;
 }
 
-.footer .Group-1 .box figure img{
+.footer .Group-1 .box figure img {
     width: auto;
     height: 90px;
 }
 
-.footer .Group-1 .box p{
+.footer .Group-1 .box p {
     color: #FFFFFF;
     font-weight: bold;
     margin-bottom: auto;
     font-size: 20px;
 }
 
-
-.footer .Group-1 .red-social a svg{
+.footer .Group-1 .red-social a svg {
     display: inline-block;
     text-decoration: none;
 }
 
-.footer .Group-1 .box h2{
+.footer .Group-1 .box h2 {
     color: #FFFFFF;
     margin-top: 10px;
     margin-bottom: 8px;
@@ -739,13 +972,56 @@ body {
     font-size: 20px;
 }
 
-.footer .Group-2{
-    color:#FFFFFF;
+.footer .Group-2 {
+    color: #FFFFFF;
     padding: 0px 10px;
     text-align: center;
     font-size: 20px;
     font-weight: bold;
 }
+
+/* Media Query para Pantallas Pequeñas */
+@media (max-width: 768px) {
+    .footer {
+        height: auto; /* Ajusta la altura */
+        padding: 20px 0;
+    }
+
+    .footer .Group-1 {
+        grid-template-columns: 1fr; /* Cambia a una columna en pantallas pequeñas */
+        grid-gap: 20px; /* Espaciado reducido */
+    }
+
+    .footer .Group-1 .box figure img {
+        height: 60px; /* Ajusta el tamaño del logo */
+    }
+
+    .footer .Group-1 .box p,
+    .footer .Group-1 .box h2 {
+        font-size: 18px; /* Reduce el tamaño de la fuente */
+    }
+
+    .footer .Group-2 {
+        font-size: 16px; /* Reduce el tamaño de la fuente en la sección de copyright */
+    }
+}
+
+/* Media Query para Pantallas de Móviles Muy Pequeños */
+@media (max-width: 480px) {
+    .footer .Group-1 .box p,
+    .footer .Group-1 .box h2 {
+        font-size: 16px; /* Reduce aún más el tamaño de la fuente */
+    }
+
+    .footer .Group-2 {
+        font-size: 14px; /* Reduce el tamaño del texto de copyright */
+    }
+
+    .footer .Group-1 .box figure img {
+        height: 50px; /* Asegúrate de que el logo no sea demasiado grande en móviles */
+    }
+}
+
 
 #about-the-app-container iframe{
     width: 100%;
@@ -872,44 +1148,6 @@ body {
 
 }
 
-@media only screen and (max-width: 960px) {
-
-    #testimonials-section .testimonial-columns {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: transparent;
-        border-radius: 0;
-    }
-
-    #testimonials-section .left-column,
-    .right-column {
-        width: 100%;
-        margin: 0;
-    }
-
-    #testimonials-section .testimonial {
-        flex-direction: column;
-        align-items: center;
-        margin: 1rem;
-        height: auto;
-    }
-
-    #testimonials-section .profile-img {
-        float: none;
-        margin: 0 auto 1rem;
-    }
-
-    #testimonials-section .information {
-        text-align: center;
-    }
-    #testimonials-section .testimonial img {
-        width: 25%;
-        height: 30%;
-        border-radius: 100%;
-    }
-}
-
 /*responsive 768px*/
 @media screen and (max-width: 768px) {
     #benefits_section .benefits_box {
@@ -992,10 +1230,6 @@ body {
     #section-membership .tarifa {
         width: 80%;
     }   
-
-    #hero_section .hero_text {
-        padding: 17rem;
-    }
     #hero_section .hero_text h1 {
         font-size: 5rem;
     }
@@ -1003,8 +1237,6 @@ body {
         font-size: 1.8rem;
     }
     #hero_section .hero_text button {
-        padding: 2rem 2rem;
-        margin: 5rem 5rem 0 5rem;
         font-size: 1.8rem;
     }
     .header .nav-links a{
